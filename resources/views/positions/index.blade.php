@@ -13,15 +13,15 @@
             <th width="280px">Action</th>
         </tr>
     </thead>
-    @foreach ($positions as $data)
+    @foreach ($positions as $position)
     <tr>
-        <td>{{ $data->id }}</td>
-        <td>{{ $data->name }}</td>
-        <td>{{ $data->keterangan }}</td>
-        <td>{{ $data->alias }}</td>
+        <td>{{ $position->id }}</td>
+        <td>{{ $position->name }}</td>
+        <td>{{ $position->keterangan }}</td>
+        <td>{{ $position->alias }}</td>
         <td>
-            <form action="{{ route('positions.destroy',$data->id) }}" method="Post">
-                <a class="btn btn-primary" href="{{ route('positions.edit',$data->id) }}">Edit</a>
+            <form action="{{ route('positions.destroy',$position->id) }}" method="Post">
+                <a class="btn btn-primary" href="{{ route('positions.edit',$position->id) }}">Edit</a>
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Delete</button>

@@ -34,4 +34,7 @@ Route::middleware('auth')->group(
 
         //route positions
         Route::resource('positions', PositionsController::class);
+
+        //route departments
+        Route::resource('departements', DepartementsController::class);
     });

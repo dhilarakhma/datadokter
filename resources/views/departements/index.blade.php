@@ -24,7 +24,13 @@
         <td>{{ $departement->id }}</td>
         <td>{{ $departement->name }}</td>
         <td>{{ $departement->location }}</td>
-        <td>{{ $departement->manager_id }}</td>
+        <td>{{ $departement->manager_id }}
+            <?php
+                if ($departement['departement'] == 0) {
+                    echo "1";
+                    } else {
+                      echo "Not Found";
+                    } ?></td>
         <td>
             <form action="{{ route('departements.destroy',$departement->id) }}" method="Post">
                 <a class="btn btn-primary" href="{{ route('departements.edit',$departement->id) }}">Edit</a>

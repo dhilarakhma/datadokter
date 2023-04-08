@@ -28,14 +28,19 @@
                 @enderror
             </div>
         </div>
+
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Manager Id:</strong>
-                <input type="text" name="manager_id" value="{{ $departement->manager_id }}" class="form-control" placeholder="Manager Id">
-                @error('manager_id')
-                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                @enderror
-            </div>
+          <label for="manager_id" class="form-label"><strong>Manager Id :</strong></label>
+          <select id="manager_id" name="manager_id" class="form-control" >
+            <option selected>Choose...</option>
+            <option value="{{ $departement->manager_id }}"  <?php if (!empty($_GET['id'])) {
+                                if ($departement['manager_id'] == 0) {
+                                  echo "selected";
+                                } else {
+                                  echo "";
+                                }
+                              } ?>>1</option>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary mt-3 ml-3">Submit</button>
     </div>

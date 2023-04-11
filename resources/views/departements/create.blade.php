@@ -31,14 +31,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
           <label for="manager_id" class="form-label"><strong>Manager Id :</strong></label>
           <select id="manager_id" name="manager_id" class="form-select">
-            <option selected>Choose...</option>
-            <option value="0" <?php if (!empty($_GET['id'])) {
-                                if ($departement['manager_id'] == 0) {
-                                  echo "selected";
-                                } else {
-                                  echo "";
-                                }
-                              } ?>>1</option>
+            <option selected>1</option>
             </select>
         </div>
 

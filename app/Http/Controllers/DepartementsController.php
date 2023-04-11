@@ -50,7 +50,7 @@ class DepartementsController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'location',
+            'location', 'required',
             'manager_id' => 'required',
         ]);
 

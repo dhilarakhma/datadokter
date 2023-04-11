@@ -32,14 +32,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
           <label for="manager_id" class="form-label"><strong>Manager Id :</strong></label>
           <select id="manager_id" name="manager_id" class="form-control" >
-            <option selected>Choose...</option>
-            <option value="{{ $departement->manager_id }}"  <?php if (!empty($_GET['id'])) {
-                                if ($departement['manager_id'] == 0) {
-                                  echo "selected";
-                                } else {
-                                  echo "";
-                                }
-                              } ?>>1</option>
+            <option selected>1</option>
             </select>
         </div>
         <button type="submit" class="btn btn-success mt-3 ml-3">Submit</button>

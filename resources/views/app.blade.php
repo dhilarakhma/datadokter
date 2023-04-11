@@ -18,11 +18,15 @@
     <link href="css/templatemo-kind-heart-charity.css" rel="stylesheet">
     <!--
 
-TemplateMo 581 Kind Heart Charity
+TemplateMo 581 Kind Heart Charity https://templatemo.com/tm-581-kind-heart-charity -->
 
-https://templatemo.com/tm-581-kind-heart-charity
-
--->
+<!-- JAVASCRIPT FILES -->
+<script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    <script src="js/click-scroll.js"></script>
+    <script src="js/counter.js"></script>
+    <script src="js/custom.js"></script>
 
 <body>
     <nav class="navbar navbar-expand-lg bg-light shadow-lg">
@@ -80,7 +84,7 @@ https://templatemo.com/tm-581-kind-heart-charity
                                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                                 <button class="btn btn-outline-success" type="submit">Search</button>
                             </form>
-                        </div
+</div>
                     </div>
 
                 </ul>

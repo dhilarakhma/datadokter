@@ -7,7 +7,7 @@
 </div>
 @endif
 <div class="text-end mb-2">
-                    <a class="btn btn-secondary" href="{{ route('departements.create') }}"> Add Position</a>
+                    <a class="btn btn-success" href="{{ route('departements.create') }}"> Add Departement</a>
                 </div>
 <table class="table">
     <thead>

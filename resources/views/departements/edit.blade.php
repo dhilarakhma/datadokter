@@ -29,12 +29,15 @@
             </div>
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
-          <label for="manager_id" class="form-label"><strong>Manager Id :</strong></label>
-          <select id="manager_id" name="manager_id" class="form-control" >
-            <option selected>1</option>
+        <div class="form-group">
+            <label for="manager_id">Manager</label>
+            <select name="manager_id" class="form-control">
+            @foreach ($managers as $manager)
+                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+            @endforeach
             </select>
         </div>
+
         <button type="submit" class="btn btn-success mt-3 ml-3">Submit</button>
     </div>
 </form>

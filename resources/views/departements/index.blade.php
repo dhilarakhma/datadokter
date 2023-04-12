@@ -19,6 +19,7 @@
             <th width="280px">Action</th>
         </tr>
     </thead>
+    <tbody>
     @foreach ($departements as $departement)
     <tr>
         <td>{{ $departement->id }}</td>

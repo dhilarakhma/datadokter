@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Departements;
 use App\Models\User;
-use Illuminate\Database\Capsule\Manager;
 use Illuminate\Http\Request;
-use Illuminate\Support\Manager as SupportManager;
+
 
 class DepartementsController extends Controller
 {
@@ -19,7 +18,7 @@ class DepartementsController extends Controller
     public function create() 
     {
         $title = "Tambah Data Departement";
-        $managers = User::where('position', 'manager')->get();
+        $managers = User::where('position', '1')->get();
         return view('departements.create', compact(['managers', 'title']));
     }
 
@@ -47,7 +46,7 @@ class DepartementsController extends Controller
     public function edit(Departements $departement)
     {
         $title = "Edit Data Departement";
-        $managers = User::where('position', 'manager')->get();
+        $managers = User::where('position', '1')->orderBy('id', 'asc')->get();
         return view('departements.edit', compact(['managers','departement', 'title']));
     }
 

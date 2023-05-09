@@ -1,17 +1,11 @@
 @extends('app')
 @section('content')
-@if(session('success'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-  {{ session('success') }}
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-@endif
 <form action="{{ route('departements.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Departement Name :</strong>
+                <strong>Departement Name:</strong>
                 <input type="text" name="name" class="form-control" placeholder="Departement Name">
                 @error('name')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -20,25 +14,23 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Lokasi :</strong>
-                <input type="text" name="location" class="form-control" placeholder="Lokasi">
+                <strong>Location :</strong>
+                <input type="text" name="location" class="form-control" placeholder="Location">
                 @error('location')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
         </div>
-
         <div class="form-group">
-            <label for="manager_id"><strong>Manager :</strong></label>
-            <select name="manager_id" id ="manager_id" class="form-select">
-            <option value="">Pilih</option>
-            @foreach ($managers as $manager)
+            <label for="manager_id">Manager</label>
+            <select name="manager_id" id="manager_id" class="form-select">
+                <option value="">Pilih</option>
+                @foreach ($managers as $manager)
                 <option value="{{ $manager->id }}">{{ $manager->name }}</option>
-            @endforeach
+                @endforeach
             </select>
         </div>
-
-        <button type="submit" class="btn btn-success mt-3 ml-3">Submit</button>
+        <button type="submit" class="btn btn-primary mt-3 ml-3">Submit</button>
     </div>
 </form>
 @endsection

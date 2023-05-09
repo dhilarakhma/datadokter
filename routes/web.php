@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PositionsController;
+use App\Http\Controllers\DepartementsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,4 +38,6 @@ Route::middleware('auth')->group(
 
         //route departments
         Route::resource('departements', DepartementsController::class);
+        Route::get('departement/export-pdf', [DepartementsController::class, 'exportPdf'])->name('departements.export-Pdf');
+        
     });

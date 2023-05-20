@@ -39,5 +39,9 @@ Route::middleware('auth')->group(
         //route departments
         Route::resource('departements', DepartementsController::class);
         Route::get('departement/export-pdf', [DepartementsController::class, 'exportPdf'])->name('departements.export-Pdf');
+
+        //route user
+        Route::resource('user', UserController::class);
+        Route::get('users/export-pdf', [UserController::class, 'exportPdf'])->name('users.export-Pdf');
         
     });

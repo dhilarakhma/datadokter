@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use PDF;
 
 class UserController extends Controller
 {
@@ -105,6 +106,8 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'nullable',
             'password' => 'required',
+            'positions' => 'required',
+            'departements' => 'required',
         ]);
 
         User::create($validatedData);
@@ -132,7 +135,9 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email',
-            'password'
+            'password',
+            'positions',
+            'departements',
         ]);
 
         $user->fill($request->post())->save();

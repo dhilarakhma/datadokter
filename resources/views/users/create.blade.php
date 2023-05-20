@@ -30,7 +30,7 @@
                 @enderror
             </div>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="manager_id">Manager</label>
             <select name="manager_id" id="manager_id" class="form-select">
                 <option value="">Pilih</option>
@@ -38,6 +38,24 @@
                 <option value="{{ $manager->id }}">{{ $manager->name }}</option>
                 @endforeach
             </select>
+        </div> -->
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Position :</strong>
+                <input type="number" name="position" class="form-control" placeholder="Position">
+                @error('position')
+                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Departement :</strong>
+                <input type="number" name="departement" class="form-control" placeholder="Departement">
+                @error('departement')
+                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
         <button type="submit" class="btn btn-primary mt-3 ml-3">Submit</button>
     </div>

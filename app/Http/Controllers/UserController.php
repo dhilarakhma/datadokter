@@ -95,24 +95,23 @@ class UserController extends Controller
 
     public function create()
     {
-        $title = "Tambah Data User";
-        $managers = User::where('position', '1')->get();
-        return view('users.create', compact(['managers', 'title']));
+        $title = "Tambah data user";
+        return view('users.create', compact(['title']));
     }
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'name' => 'required',
-            'email' => 'nullable',
+            'email' => 'required|unique:users',
             'password' => 'required',
-            'positions' => 'required',
-            'departements' => 'required',
+            'position' => 'required',
+            'departement' => 'required',
         ]);
 
-        User::create($validatedData);
+        User::create($request->post());
 
-        return redirect()->route('user.index')->with('success', 'User created successfully.');
+        return redirect()->route('user.index')->with('success', 'User has been created successfully.');
     }
 
 
@@ -125,10 +124,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $title = "Edit Data User";
-        $managers = User::where('position', '1')->get();
-        return view('users.edit', compact(['user', 'managers', 'title']));
+        return view('users.edit', compact(['user', 'title']));
     }
-
 
     public function update(Request $request, User $user)
     {
@@ -136,8 +133,8 @@ class UserController extends Controller
             'name' => 'required',
             'email',
             'password',
-            'positions',
-            'departements',
+            'position',
+            'departement',
         ]);
 
         $user->fill($request->post())->save();

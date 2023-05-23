@@ -19,8 +19,8 @@
             <td>{{ $no }}</td>
             <td>{{ $data->name }}</td>
             <td>{{ $data->email }}</td>
-            <td>{{ $data->positions }}</td>
-            <td>{{ $data->departements }}</td>
+            <td>{{ $data->position }}</td>
+            <td>{{ $data->departement }}</td>
         </tr>
         @endforeach
     </tbody>

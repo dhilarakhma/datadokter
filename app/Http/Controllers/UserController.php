@@ -111,7 +111,7 @@ class UserController extends Controller
 
         User::create($request->post());
 
-        return redirect()->route('user.index')->with('success', 'User has been created successfully.');
+        return redirect()->route('user.index')->with('success', 'users has been created successfully.');
     }
 
 
@@ -127,19 +127,23 @@ class UserController extends Controller
         return view('users.edit', compact(['user', 'title']));
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required',
-            'email',
-            'password',
-            'position',
-            'departement',
+            'email' => 'required|unique:users,email,' . $id,
+            'position' => 'required',
+            'departement' => 'required',
         ]);
 
-        $user->fill($request->post())->save();
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->position = $request->position;
+        $user->departement = $request->departement;
+        $user->save();
 
-        return redirect()->route('user.index')->with('success', 'User Has Been updated successfully');
+        return redirect()->route('user.index')->with('success', 'User updated successfully.');
     }
 
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PositionsController;
 use App\Http\Controllers\DepartementsController;
+use App\Http\Controllers\JadwalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,4 +46,6 @@ Route::middleware('auth')->group(
         Route::resource('user', UserController::class);
         Route::get('users/export-pdf', [UserController::class, 'exportPdf'])->name('users.export-Pdf');
         
+        //route jadwal
+        Route::get('search/jadwal', [JadwalController::class, 'autocomplete'])->name('search.jadwal');
     });

@@ -73,6 +73,15 @@
                 </tbody>
             </table>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Jumlah Data :</strong>
+                <input type="text" name="jumlah" class="form-control" placeholder="Jumlah Data">
+                @error('bulan')
+                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
         <button type="submit" class="btn btn-primary mt-3 ml-3">Submit</button>
     </div>
 </form>
@@ -80,7 +89,7 @@
 @section('js')
 <script type="text/javascript">
     var path = "{{ route('search.jadwal') }}";
-  
+
     $("#search").autocomplete({
         source: function( request, response ) {
           $.ajax({
@@ -102,6 +111,7 @@
            return false;
         }
       });
+
       function add(id){
         const path = "{{ route('jadwals.index') }}/" + id;
         var html = "";
@@ -110,7 +120,6 @@
             var html = $('#detail').html();
             no = no+$('#detail tr').length;
         }
-        
         $.ajax({
             url: path,
             type: 'GET',
@@ -130,7 +139,23 @@
              $('#detail').html(html);
             }
         });
-        
     }
+
+    // function sumQty(no, q){
+    //     var price = $("input[name=price"+no+"]").val();
+    //     var subtotal = q*parseInt(price);
+    //     $("input[name=sub_total"+no+"]").val(subtotal);
+    //     console.log(q+"*"+price+"="+subtotal);
+    // }
+
+    // function sumTotal(){
+    // var total = 0;
+    //     for (let i = 1; i <= $("input[name=jml]").val(); i++) {
+    //         var sub = $("input[name=sub_total]"+i+"]").val();
+    //         total = total + parseInt(sub);
+    //     }
+    //     $("input[name=total]").val();
+    // }
+
 </script>
 @endsection

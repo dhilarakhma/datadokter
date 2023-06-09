@@ -8,8 +8,8 @@
 </div>
 @endif
 <div class="text-end mb-2">
-<a class="btn btn-light" href="{{ route('departements.exportPdf') }}"> Export</a>
-<a class="btn btn-secondary" href="{{ route('departements.create') }}"> Add Departement</a>
+<a class="btn btn-light" href="{{ route('dokters.exportPdf') }}"> Export</a>
+<a class="btn btn-secondary" href="{{ route('dokters.create') }}"> Add Departement</a>
 </div>
 <table id="example" class="table table-striped" style="width:100%">
   <thead>
@@ -22,20 +22,20 @@
     </tr>
   </thead>
   <tbody>
-    @foreach ($departements as $data)
+    @foreach ($dokters as $data)
     <tr>
-        <td>{{ $data->id }}</td>
-        <td>{{ $data->name }}</td>
-        <td>{{ $data->location }}</td>
+        <td>{{ $dokters->id }}</td>
+        <td>{{ $dokters->name }}</td>
+        <td>{{ $dokters->location }}</td>
         <td>{{ 
-          (isset($data->getManager->email)) ? 
-          $data->getManager->email : 
+          (isset($dokters->getManager->email)) ? 
+          $dokters->getManager->email : 
           'Tidak Ada'
           }}
         </td>
         <td>
-            <form action="{{ route('departements.destroy',$data->id) }}" method="Post">
-                <a class="btn btn-primary" href="{{ route('departements.edit',$data->id) }}">Edit</a>
+            <form action="{{ route('dokters.destroy',$data->id) }}" method="Post">
+                <a class="btn btn-primary" href="{{ route('dokters.edit',$data->id) }}">Edit</a>
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Delete</button>

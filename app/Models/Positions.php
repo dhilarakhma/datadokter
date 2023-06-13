@@ -13,4 +13,9 @@ class Positions extends Model
         'keterangan', 
         'alias'
     ];
+
+    public function getManager()
+    {
+        return $this->belongsTo(User::class, 'manager_id', 'id');
+    }
 }

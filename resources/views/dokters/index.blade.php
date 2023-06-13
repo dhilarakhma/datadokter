@@ -7,7 +7,7 @@
 </div>
 @endif
 <div class="text-end mb-2">
-
+<a class="btn btn-warning" href="{{ route('dokters.chartLine') }}"> Chart</a>
   <a class="btn btn-success" href="{{ route('dokters.create') }}"> Add Dokter</a>
 </div>
 <table id="example" class="table table-striped" style="width:100%">

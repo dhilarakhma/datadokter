@@ -29,7 +29,7 @@ Route::post('login', [UserController::class, 'login_action'])->name('login.actio
 Route::middleware('auth')->group(
     function (){
         Route::get('/', function () {
-            return view('home', ['title' => 'Beranda']);
+            return view('home', ['title' => 'Chart Ajax']);
         })->name('home');
         Route::get('password', [UserController::class, 'password'])->name('password');
         Route::post('password', [UserController::class, 'password_action'])->name('password.action');
@@ -51,4 +51,8 @@ Route::middleware('auth')->group(
         Route::resource('dokters', DokterController::class);
         Route::get('search/jadwal', [JadwalController::class, 'autocomplete'])->name('search.jadwal');
         Route::resource('jadwals', JadwalController::class);
+
+        //route chart
+        Route::get('chart-line', [DokterController::class, 'chartLine'])->name('dokters.chartLine');
+        Route::get('chart-line-ajax', [DokterController::class, 'chartLineAjax'])->name('dokters.chartLineAjax');
     });

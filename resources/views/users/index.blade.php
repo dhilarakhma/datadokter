@@ -28,7 +28,12 @@
         <td>{{ $data->id }}</td>
         <td>{{ $data->name }}</td>
         <td>{{ $data->email }}</td>
-        <td>{{ $data->position }}</td>
+        <td>{{ 
+            (isset($data->getManager->name)) ?
+            $data->getManager->name :
+            'Tidak Ada'
+            }}
+        </td>
         <td>{{ $data->departement }}</td>
         <td>
             <form action="{{ route('user.destroy',$data->id) }}" method="Post">

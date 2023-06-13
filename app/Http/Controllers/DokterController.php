@@ -6,13 +6,14 @@ use App\Models\Detail;
 use App\Models\Dokter;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Charts\DokterLineChart;
 
 class DokterController extends Controller
 {
     public function index()
     {   
         $title = "Data Dokter";
-        $dokters = Dokter::orderBy('id','asc')->paginate(20);
+        $dokters = Dokter::orderBy('id','asc')->get();
         return view('dokters.index', compact(['dokters' , 'title']));
     }
 
@@ -30,7 +31,7 @@ class DokterController extends Controller
         ]);
 
         $dokter = [
-            'id_dokter' => $request->no_trx,
+            'id_dokter' => $request->id_dokter,
             'nama_dokter' => $request->nama_dokter,
             'bulan' => $request->bulan,
             'spesialisasi' => $request->spesialisasi,
@@ -102,6 +103,39 @@ class DokterController extends Controller
 
         $pdf = PDF::loadview('dokters.pdf', compact(['dokters', 'title']));
         return $pdf->stream('laporan-dokters-pdf');
+    }
+
+    public function chartLine()
+    {
+        $api = url(route('dokters.chartLineAjax'));
+   
+        $chart = new DokterLineChart;
+        $chart->labels(['Ibu dan Anak', 'THT', 'Jantung', 'Mata', 'Kandungan', 'Kulit', 'Penyakit Dalam'])->load($api);
+        $title = "Chart Ajax";
+        return view('chart', compact('chart', 'title'));
+    }
+   
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    public function chartLineAjax(Request $request)
+    {
+        $year = $request->has('year') ? $request->year : date('Y');
+        $dokters = Dokter::select(\DB::raw("COUNT(*) as count"))
+                    ->where('bulan', 'LIKE', '%'.$year. '%')
+                    ->groupBy(\DB::raw("spesialisasi"))
+                    ->pluck('count');
+  
+        $chart = new DokterLineChart;
+  
+        $chart->dataset('Dokter Spesialis Chart', 'line', $dokters)->options([
+                    'fill' => 'true',
+                    'borderColor' => '#51C1C0'
+                ]);
+  
+        return $chart->api();
     }
 
 }

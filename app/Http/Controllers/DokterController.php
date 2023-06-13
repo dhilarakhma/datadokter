@@ -12,7 +12,7 @@ class DokterController extends Controller
     public function index()
     {   
         $title = "Data Dokter";
-        $dokters = Dokter::orderBy('id','asc')->paginate(5);
+        $dokters = Dokter::orderBy('id','asc')->paginate(20);
         return view('dokters.index', compact(['dokters' , 'title']));
     }
 
@@ -30,13 +30,12 @@ class DokterController extends Controller
         ]);
 
         $dokter = [
-            'id_dokter' => $request->id_dokter,
+            'id_dokter' => $request->no_trx,
             'nama_dokter' => $request->nama_dokter,
             'bulan' => $request->bulan,
             'spesialisasi' => $request->spesialisasi,
-            // 'total' => $request->total,
         ];
-        if ($result = Dokter::create($dokter)){
+        if($result = Dokter::create($dokter)){
             for ($i=1; $i <= $request->jml; $i++) { 
                 $details = [
                     'id_dokter' => $request->id_dokter,
@@ -94,6 +93,15 @@ class DokterController extends Controller
     {
         $dokter->delete();
         return redirect()->route('dokters.index')->with('success','Departement has been deleted successfully');
+    }
+
+    public function exportPdf()
+    {
+        $title = "Laporan Data Dokter";
+        $dokters = Dokter::orderBy('id', 'asc')->get();
+
+        $pdf = PDF::loadview('dokters.pdf', compact(['dokters', 'title']));
+        return $pdf->stream('laporan-dokters-pdf');
     }
 
 }

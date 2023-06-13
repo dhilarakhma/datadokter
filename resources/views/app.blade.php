@@ -33,7 +33,7 @@
                         <a class="nav-link" href="{{route('user.index')}}">User</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('dokters.index')}}">Jadwal</a>
+                        <a class="nav-link" href="{{route('dokters.index')}}">Dokter</a>
                     </li>
                     @if(Auth()->user()->position =="0")
                     <li class="nav-item dropdown">

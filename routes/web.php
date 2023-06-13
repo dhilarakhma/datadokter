@@ -50,6 +50,5 @@ Route::middleware('auth')->group(
         //route dokters
         Route::resource('dokters', DokterController::class);
         Route::get('search/jadwal', [JadwalController::class, 'autocomplete'])->name('search.jadwal');
-        Route::get('dokters/export-pdf', [DokterController::class, 'exportPdf'])->name('dokters.export-Pdf');
         Route::resource('jadwals', JadwalController::class);
     });

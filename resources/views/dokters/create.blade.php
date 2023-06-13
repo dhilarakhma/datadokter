@@ -16,7 +16,7 @@
             <div class="form-group">
                 <strong>Bulan & Tahun Praktik:</strong>
                 <input type="text" name="bulan" class="form-control" placeholder="Bulan & Tahun Praktik">
-                @error('location')
+                @error('bulan')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
@@ -47,7 +47,7 @@
         <div class="row col-xs-12 col-sm-12 col-md-12 mt-3">
             <div class="col-md-10 form-group">
                 <input type="text" name="search" id="search" class="form-control" placeholder="Masukan Hari">
-                @error('name')
+                @error('hari')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
             </div>
@@ -75,8 +75,8 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Jumlah Data :</strong>
-                <input type="text" name="jumlah" class="form-control" placeholder="Jumlah Data">
+                <strong>Jumlah Jadwal :</strong>
+                <input type="text" name="jml" class="form-control" placeholder="Jumlah Jadwal">
                 @error('bulan')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
@@ -105,9 +105,21 @@
           });
         },
         select: function (event, ui) {
-           $('#search').val(ui.item.label);
-        //    console.log(ui.item); 
-           add(ui.item.id);
+            $('#search').val(ui.item.label);
+           console.log($("input[name=jml]").val());
+            if($("input[name=jml]").val() > 0){
+                for (let i = 1; i <=  $("input[name=jml]").val(); i++) {
+                    id = $("input[name=id_jadwal"+i+"]").val();
+                    if(id==ui.item.id){
+                        alert(ui.item.value+' sudah ada!');
+                        break;
+                    }else{
+                        add(ui.item.id);
+                    }
+                }
+            }else{
+                add(ui.item.id);
+            } 
            return false;
         }
       });
@@ -137,6 +149,7 @@
                     '<td><a href="#" class="btn btn-sm btn-danger">X</a></td>' +
                 '</tr>';
              $('#detail').html(html);
+             $("input[name=jml]").val(no);
             }
         });
     }

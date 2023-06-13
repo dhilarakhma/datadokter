@@ -15,4 +15,14 @@ class Dokter extends Model
         'bulan',
         'spesialisasi',
     ];
+
+    public function detail()
+    {
+        return $this->hasMany(Detail::class, 'id_dokter', 'id_dokter');
+    }
+
+    public function getManager()
+    {
+        return $this->belongsTo(User::class, 'nama_dokter', 'id');
+    }
 }

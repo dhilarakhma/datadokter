@@ -59,35 +59,35 @@ class DokterController extends Controller
     {
         $title = "Edit Data Dokter";
         $managers = User::where('position', '1')->orderBy('id','asc')->get();
-        $detail = Detail::where('no_dokter', $dokter->id_dokter)->orderBy('id','asc')->get();
+        $detail = Detail::where('id_dokter', $dokter->id_dokter)->orderBy('id','asc')->get();
         return view('dokters.edit',compact('dokter' , 'title', 'managers', 'detail'));
     }
 
     public function update(Request $request, Dokter $dokter)
     {
         $dokters = [
-            'id_dokter' => $request->id_dokter,
+            'id_dokter' => $dokter->id_dokter,
             'nama_dokter' => $request->nama_dokter,
             'bulan' => $request->bulan,
             'spesialisasi' => $request->spesialisasi,
-            // 'total' => $request->total,
         ];
-        if ($dokter->fill($dokters)->save()){
-            Detail::where('no_dok', $dokter->id_dokter)->delete();
+        if($dokter->fill($dokters)->save()){
+            Detail::where('id_dokter', $dokter->id_dokter)->delete();
             for ($i=1; $i <= $request->jml; $i++) { 
                 $details = [
-                    'no_dok' => $dokter->id_dokter,
-                    'id_jadwal' => $request['id_jadwal'.$i],
-                    'nama_dokter' => $request['nama_dokter'.$i],
-                    'bulan' => $request['bulan'.$i],
-                    'spesialisai' => $request['spesialisai'.$i],
-                    'tempat_praktik' => $request['tempat_praktik'.$i],
+                    'id_dokter' => $dokter->id_dokter,
+                    'id_jadwal' => $request['jadwalId'.$i],
+                    'hari' => $request['hari'.$i],
+                    'jam_mulai' => $request['jamMulai'.$i],
+                    'jam_selesai' => $request['jamSelesai'.$i],
+                    'tempat_praktik' => $request['tempatPraktik'.$i],
                     'keterangan' => $request['keterangan'.$i],
                 ];
                 Detail::create($details);
             }
-        }
-        return redirect()->route('dokters.index')->with('success','Departement Has Been updated successfully');
+        }           
+
+        return redirect()->route('dokters.index')->with('success','Dokter Has Been updated successfully');
     }
 
     public function destroy(Dokter $dokter)

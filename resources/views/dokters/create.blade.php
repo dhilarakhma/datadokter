@@ -146,7 +146,7 @@
                     '<td><input type="text" name="jam_selesai'+no+'" class="form-control" value="'+data.jam_selesai+'"></td>' +
                     '<td><input type="text" name="tempat_praktik'+no+'" class="form-control"></td>' +
                     '<td><input type="text" name="keterangan'+no+'" class="form-control"></td>' +
-                    '<td><a href="#" class="btn btn-sm btn-danger">X</a></td>' +
+                    '<td><a href="#" class="btn btn-sm btn-danger">Delete</a></td>' +
                 '</tr>';
              $('#detail').html(html);
              $("input[name=jml]").val(no);

@@ -52,6 +52,10 @@ Route::middleware('auth')->group(
         Route::get('search/jadwal', [JadwalController::class, 'autocomplete'])->name('search.jadwal');
         Route::resource('jadwals', JadwalController::class);
 
+        //route jadwals
+        Route::resource('jadwals', JadwalController::class);
+        Route::get('jadwal/export-excel', [JadwalController::class, 'exportExcel'])->name('jadwals.exportExcel');
+
         //route chart
         Route::get('chart-line', [DokterController::class, 'chartLine'])->name('dokters.chartLine');
         Route::get('chart-line-ajax', [DokterController::class, 'chartLineAjax'])->name('dokters.chartLineAjax');

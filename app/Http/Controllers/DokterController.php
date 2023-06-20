@@ -130,7 +130,7 @@ class DokterController extends Controller
   
         $chart = new DokterLineChart;
   
-        $chart->dataset('Dokter Spesialis Chart', 'line', $dokters)->options([
+        $chart->dataset('Chart Dokter Spesialis', 'line', $dokters)->options([
                     'fill' => 'true',
                     'borderColor' => '#51C1C0'
                 ]);

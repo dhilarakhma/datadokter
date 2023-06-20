@@ -90,6 +90,7 @@ class UserController extends Controller
     {
         $title = "Data User";
         $user = User::orderBy('id', 'asc')->paginate();
+        $managers = User::where('position', '1')->get();
         return view('users.index', compact(['user', 'title']));
     }
 
@@ -124,6 +125,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $title = "Edit Data User";
+        $managers = User::where('position', '1')->get();
         return view('users.edit', compact(['user', 'title']));
     }
 
